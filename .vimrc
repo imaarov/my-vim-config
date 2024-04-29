@@ -17,6 +17,10 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'williamboman/mason.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install --frozen-lockfile --production',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 call plug#end()
 
 set termguicolors     " enable true colors support
@@ -45,4 +49,7 @@ let g:ale_linters = {
 let g:ale_completion_enabled = 1
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
+" when running at every change you may want to disable quickfix
+let g:prettier#quickfix_enabled = 0
 
+autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
