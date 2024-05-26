@@ -8,3 +8,4 @@
 - prettier
 - auto indention
 - highlight error/hints
+- phpcf fixer
